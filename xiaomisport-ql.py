@@ -3,12 +3,14 @@
 """
 # -*- coding: utf8 -*-
 # python >=3.8
+#环境变量: xppmode xppkey xpuser xppwd xpstep 使用方法：https://github.com/577fkj/mimotion.git
 
 import json
 import random
 import re
 import json
 import sys
+import os
 import time
 from urllib.parse import quote
 
@@ -555,17 +557,22 @@ if __name__ == "__main__":
     # Push Mode
     # print(sys.argv)
     try:
-        Pm = sys.argv[1]
-        pkey = sys.argv[2]
+        Pm = os.environ["xppmode"]
+        #sys.argv[1]
+        pkey = os.environ["xppkey"]
+        #sys.argv[2]
 
         to_push = ToPush(pkey)
 
         # 用户名（格式为 13800138000）
-        user = sys.argv[3]
+        user = os.environ["xpuser"]
+        #sys.argv[3]
         # 登录密码
-        passwd = sys.argv[4]
+        passwd = os.environ["xppwd"]
+        #sys.argv[4]
         # 要修改的步数，直接输入想要修改的步数值，0为随机步数
-        step = sys.argv[5].replace('[', '').replace(']', '')
+        step = os.environ["xpstep"].replace('[', '').replace(']', '')
+        #sys.argv[5].replace('[', '').replace(']', '')
     except IndexError as e:
         print("参数有误: " + str(e))
         exit(1)
